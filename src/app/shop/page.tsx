@@ -98,34 +98,33 @@ export default function Shop() {
                 </ul>
             </nav>
 
-            {/* Produtos */}
-            <Link href={'/id'}>
-                <div className="bg-white mt-6">
-                    <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-                        <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8">
-                            {products.map((product) => (
-                                <div key={product.id} className="group relative">
+           {/* Produtos */}
+           <div className="bg-white mt-6">
+                <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+                    <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:gap-x-8">
+                        {products.map((product) => (
+                            <Link key={product.id} href={`/${product.id}`}>
+
+                                <div className="group relative">
                                     <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none lg:h-96">
                                         <img
                                             alt={product.imageAlt}
                                             src={product.imageSrc}
                                             className="h-full w-full object-cover object-center lg:h-full lg:w-full"
                                         />
-                                        {/* Sobreposição com informações do produto */}
                                         <div className="absolute inset-0 flex flex-col justify-end bg-slate-50 bg-opacity-20 transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-                                            <div className="p-4 text-center ">
+                                            <div className="p-4 text-center">
                                                 <h3 className="text-sm">{product.name}</h3>
                                                 <p className="text-sm font-medium">{product.price}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            ))}
-                        </div>
+                            </Link>
+                        ))}
                     </div>
                 </div>
-            </Link>
-            
+            </div>
         </section>
     );
 }

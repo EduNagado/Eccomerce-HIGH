@@ -12,10 +12,12 @@ const lookBooks = [
     { name: 'Foto 10', href: '#', imageSrc: '/imgLookbook/10a.png' },
     { name: 'Foto 11', href: '#', imageSrc: '/imgLookbook/11a.png' },
     { name: 'Foto 12', href: '#', imageSrc: '/imgLookbook/12a.png' },
+
 ];
 
 export default function LookBook() {
     return (
+        
         <section className="flex flex-col items-center justify-between p-1">
             <div className="bg-white">
                 <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">

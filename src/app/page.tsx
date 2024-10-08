@@ -1,5 +1,6 @@
 
 import "./globals.css";
+import Home from "./home/page";
 import LookBook from "./lookbook/page";
 
 
@@ -8,7 +9,7 @@ import LookBook from "./lookbook/page";
 export default function App() {
   return (
     <>
-      <LookBook />
+      <Home />
 
 
     </>
