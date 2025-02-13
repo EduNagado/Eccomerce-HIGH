@@ -1,6 +1,6 @@
-"use client"
+"use client";
 import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useParams, useRouter } from "next/navigation";
 
 const idproduto = [
   {
@@ -51,77 +51,61 @@ const idproduto = [
 ];
 
 export default function Produto() {
-  const [isClient, setIsClient] = useState(false);
   const [quantidade, setQuantidade] = useState(1);
   const [imagemSelecionada, setImagemSelecionada] = useState("");
-
-  // Garantir que o código do router rode apenas no cliente
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null; // Ou algum loading
-  }
-
-  const router = useRouter();
-  const { id } = router.query;
-
-  // Verifica e converte o ID para um número
-  const numericId = id ? parseInt(Array.isArray(id) ? id[0] : id, 10) : NaN;
-
+  
+  // Obtain route parameters
+  const params = useParams();
+  const { id } = params;
+  
+  // Convert id to a number
+  const numericId = id ? parseInt(id, 10) : NaN;
+  
   if (isNaN(numericId)) {
     return <div>ID inválido</div>;
   }
-
-  const produtoSelecionado = idproduto.find((produto) => produto.id === numericId);
-
+  
+  const produtoSelecionado = idproduto.find(
+    (produto) => produto.id === numericId
+  );
+  
   if (!produtoSelecionado) {
     return <div>Produto não encontrado</div>;
   }
-
-  const incrementar = () => {
-    setQuantidade(quantidade + 1);
-  };
-
-  const decrementar = () => {
-    if (quantidade > 1) {
-      setQuantidade(quantidade - 1);
-    }
-  };
-
+  
+  // Set initial image on product load
   useEffect(() => {
-    // Define a imagem inicial ao carregar o produto
     if (produtoSelecionado?.imageSrc.length > 0) {
       setImagemSelecionada(produtoSelecionado.imageSrc[0]);
     }
   }, [produtoSelecionado]);
+  
+  const incrementar = () => setQuantidade((q) => q + 1);
+  const decrementar = () => setQuantidade((q) => (q > 1 ? q - 1 : q));
 
   return (
     <section className="flex p-6 bg-white">
-      {/* Coluna das imagens */}
-      <div className="w-1/2 flex flex-col items-start">
-        {/* Imagem principal */}
+      {/* Column for images */}
+      <div className="w-1/2 flex flex-col items-start ">
         <img
           src={imagemSelecionada}
           alt="Imagem selecionada"
           className="w-full h-80 object-contain mb-4"
         />
-        {/* Imagens menores */}
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 absolute">
           {produtoSelecionado.imageSrc.map((image, index) => (
             <img
               key={index}
               src={image}
               alt={`Imagem ${index + 1}`}
-              className="w-16 h-16 cursor-pointer rounded border border-gray-300 object-cover"
+              className="w-16 h-16 cursor-pointer rounded border border-gray-300 object-cover "
               onClick={() => setImagemSelecionada(image)}
             />
           ))}
         </div>
       </div>
 
-      {/* Coluna das informações do produto */}
+      {/* Column for product details */}
       <div className="w-1/2 flex flex-col justify-start items-start p-6">
         <h1 className="text-3xl font-bold mb-2">{produtoSelecionado.name}</h1>
         <p className="mb-2">{produtoSelecionado.description}</p>
@@ -144,7 +128,6 @@ export default function Produto() {
           </div>
         </div>
 
-        {/* Controle de quantidade */}
         <div className="flex items-center mb-4 space-x-4">
           <div className="flex items-center bg-slate-200 w-64">
             <button
