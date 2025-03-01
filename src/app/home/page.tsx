@@ -25,7 +25,7 @@ export default function Home() {
             className="object-cover"
           />
           {/* Botão centralizado */}
-          <button className="absolute bg-black text-white py-2 px-4 bg-opacity-50 hover:bg-opacity-75 uppercase">
+          <button className="absolute border border-black text-black py-1 px-2 text-sm bg-transparent hover:border-white hover:text-white transition-colors duration-500 uppercase">
             <Link href={"/shop"}>Compre agora</Link>
             
           </button>

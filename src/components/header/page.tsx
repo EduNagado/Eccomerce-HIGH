@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import Image from 'next/image';
 import { HiMiniMagnifyingGlass } from "react-icons/hi2";
@@ -13,17 +13,16 @@ export default function Header() {
 
     return (
         <div className="flex items-center justify-between p-4">
-            <nav className="flex items-center space-x-4">
-                <ul className="flex items-center space-x-4">
+            <nav className="flex items-center space-x-6">
+                <ul className="flex items-center space-x-6 text-sm">
                     <li><Link href={"/shop"}>SHOP</Link></li>
                     <li><Link href={"/lookbook"}>LOOKBOOKS</Link></li>
-                    <li><Link href={"/sobre"}>SOBRE</Link></li>
+                    <li><Link href={"/support"}>SUPPORT</Link></li>
                     <li><Link href={"/videos"}>VIDEOS</Link></li>
                 </ul>
             </nav>
             <Link href={"/home"}>
                 <Image
-                    
                     className='flex items-center justify-center mx-auto'
                     src="/imgLogo/Logo.png"
                     alt="Logo"
@@ -31,10 +30,7 @@ export default function Header() {
                     height={110}
                 />
             </Link>
-            
-
-           
-            <div className="flex items-center space-x-8 ml-4"> 
+            <div className="flex items-center space-x-10 ml-4"> 
                 {/* Lupa com interação de hover */}
                 <div className="relative">
                     <button 

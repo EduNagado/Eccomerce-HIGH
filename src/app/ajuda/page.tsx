@@ -1,5 +1,5 @@
 
-export default function Sobre(){
+export default function Ajuda(){
     return(
         <div>
             
